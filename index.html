@@ -66,7 +66,7 @@ function segmentOnCategories(categoryList){
     var params = {
       to: dateRange.to,
       from: dateRange.from,
-      'where':'properties["Event Categories"] == "'+category+'"'
+      'where':'properties["Event Category"] == "'+category+'"'
     };
     
     MP.api.segment('Complete Order', 'Event Name', params).done(function(results){
