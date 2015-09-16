@@ -58,7 +58,7 @@ MP.api.segment('Complete Order', 'Event Category', dateRange).done(function(resu
       categoryList.push(eventCategory);
     }
   }
-  root['children'] = eventList;
+  root['children'] = categoryList;
   buildChart(root);
 });
 
