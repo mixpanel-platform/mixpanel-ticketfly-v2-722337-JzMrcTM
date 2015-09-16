@@ -34,14 +34,21 @@ rect.background {
     
   </head>
   <body class="mixpanel-platform-body">
-    
+    <div id="dateSelect" style="float: right;"></div>
 
     <script>
 
 
 
 /* Mixpanel Query */
+var dateSelect  = $('#dateSelect').MPDatepicker();
+var params = {
+  
+}
 
+MP.api.segment('Complete Order', 'Event Category', params).done({
+  
+});
 
 MP.api.events('Complete Order',  {}).done(function(results) {
     var root = {"name":"flare", "children":[]};
