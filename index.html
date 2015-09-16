@@ -50,7 +50,7 @@ MP.api.segment('Complete Order', 'Event Category', dateRange).done(function(resu
   var categoryList = [];
   for(var key in results.values()){
     if(results.values().hasOwnProperty(key)){
-      var eventCategory{};
+      var eventCategory={};
       var children = [];
       eventCategory['name'] = key;
       // TODO: add children here
