@@ -54,6 +54,9 @@ MP.api.segment('Complete Order', 'Event Category', dateRange).done(function(resu
       var children = [];
       eventCategory['name'] = key;
       // TODO: add children here
+      for(var key2 in results.values()[key]){
+        console.log(key2);
+      }
       eventCategory['children'] = children;
       categoryList.push(eventCategory);
     }
