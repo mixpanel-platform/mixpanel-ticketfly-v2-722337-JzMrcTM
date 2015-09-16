@@ -70,6 +70,7 @@ function segmentOnCategories(categoryList){
     };
     
     MP.api.segment('Complete Order', 'Event Name', params).done(function(results){
+      console.log(results.values());
       var rootChild = {};
       rootChild['name'] = category;
       rootChild['children'] = [];
