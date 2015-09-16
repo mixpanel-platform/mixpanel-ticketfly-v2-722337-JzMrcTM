@@ -38,8 +38,6 @@ rect.background {
 
     <script>
 
-
-
 /* Mixpanel Query */
 var dateSelect  = $('#dateSelect').MPDatepicker();
 var dateRange = dateSelect.MPDatepicker('value');
@@ -56,6 +54,7 @@ MP.api.segment('Complete Order', 'Event Category', dateRange).done(function(resu
   
 });
 
+/* Recursive Function that drills into category and subcategory */
 function segmentOnCategories(categoryList){
   if(categoryList.length == 0){
     buildChart(root);
@@ -94,31 +93,6 @@ function segmentOnCategories(categoryList){
     });
   }
 }
-
-MP.api.events('Complete Order',  {}).done(function(results) {
-    var root = {"name":"flare", "children":[]};
-    var eventList = [];
-    for (var key in results.values()) {
-      if (results.values().hasOwnProperty(key)) {
-        var event = {};
-        var children = [];
-        event['name'] = key;
-        console.log(key);
-        //console.log(results.values()[key]);
-        for(var key2 in results.values()[key]){
-          event2 = {};
-          event2['name'] = key2;
-          event2['size'] = results.values()[key][key2];
-          children.push(event2);
-        }
-        event['children'] = children;
-        eventList.push(event);
-      }
-    }
-    root['children'] = eventList;
-    console.log(root);
-    //buildChart(root);
-});
 
 function buildChart(root){
 /* Data grabbed, generate other stuff */
