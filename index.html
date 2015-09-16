@@ -43,9 +43,23 @@ rect.background {
 /* Mixpanel Query */
 var dateSelect  = $('#dateSelect').MPDatepicker();
 var dateRange = dateSelect.MPDatepicker('value');
+var root = {"name":"flare", "children":[]};
 
+// TODO: might want to add some params to show the chart based on revenue nums
 MP.api.segment('Complete Order', 'Event Category', dateRange).done(function(results){
-  console.log(results.values().length);
+  var categoryList = [];
+  for(var key in results.values()){
+    if(results.values().hasOwnProperty(key)){
+      var eventCategory{};
+      var children = [];
+      eventCategory['name'] = key;
+      // TODO: add children here
+      eventCategory['children'] = children;
+      categoryList.push(eventCategory);
+    }
+  }
+  root['children'] = eventList;
+  buildChart(root);
 });
 
 MP.api.events('Complete Order',  {}).done(function(results) {
@@ -70,7 +84,7 @@ MP.api.events('Complete Order',  {}).done(function(results) {
     }
     root['children'] = eventList;
     console.log(root);
-    buildChart(root);
+    //buildChart(root);
 });
 
 function buildChart(root){
