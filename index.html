@@ -68,10 +68,11 @@ function segmentOnCategories(categoryList){
       from: dateRange.from,
       'where':'properties["Event Categories"] == "'+category+'"'
     };
-    var rootChild = {};
-    rootChild['name'] = category;
-    rootChild['children'] = [];
+    
     MP.api.segment('Complete Order', 'Event Name', params).done(function(results){
+      var rootChild = {};
+      rootChild['name'] = category;
+      rootChild['children'] = [];
       // for each event in a particular category, create an event name and a LIST OF CHILDREN
       for(key in results.values()){
         var child = {};
@@ -89,7 +90,6 @@ function segmentOnCategories(categoryList){
       }
       root['children'].push(rootChild);
       segmentOnCategories(categoryList);   
-      console.log('here');
     });
   }
 }
