@@ -44,10 +44,12 @@ var dateRange = dateSelect.MPDatepicker('value');
 var orderEventName = 'Complete Order';
 var orderCategoryName = 'Event Category';
 var orderProductName = 'Event Name';
+
+var root = {"name":"flare", "children":[]};
 runQuery();
 
 function runQuery(){
-  var root = {"name":"flare", "children":[]};
+  root = {"name":"flare", "children":[]};
   
   // TODO: might want to add some params to show the chart based on revenue nums
   MP.api.segment(orderEventName, orderCategoryName, dateRange).done(function(results){
