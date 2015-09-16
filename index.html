@@ -53,11 +53,12 @@ MP.api.segment('Complete Order', 'Event Category', dateRange).done(function(resu
     categoryList.push(key);
   }
   segmentOnCategories(categoryList);
-  console.log(root);
+  
 });
 
 function segmentOnCategories(categoryList){
   if(categoryList.length == 0){
+    console.log(root);
     return;
   }
   else{
