@@ -43,7 +43,8 @@ var dateSelect  = $('#dateSelect').MPDatepicker();
 var dateRange = dateSelect.MPDatepicker('value');
 var orderEventName = 'Complete Order';
 var orderCategoryName = 'Event Category';
-console.log(dateRange.to);
+var orderProductName = 'Event Name';
+
 var root = {"name":"flare", "children":[]};
 
 // TODO: might want to add some params to show the chart based on revenue nums
@@ -69,7 +70,7 @@ function segmentOnCategories(categoryList){
       'where':'properties["Event Category"] == "'+category+'"'
     };
     
-    MP.api.segment('Complete Order', 'Event Name', params).done(function(results){
+    MP.api.segment(orderEventName, orderProductName, params).done(function(results){
       console.log(results.values());
       var rootChild = {};
       rootChild['name'] = category;
