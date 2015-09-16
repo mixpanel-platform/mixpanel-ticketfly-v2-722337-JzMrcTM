@@ -86,7 +86,7 @@ function segmentOnCategories(categoryList){
           child2['size'] = results.values()[key][date];
           children2.push(child2);
         }
-        child['children'].push(children2);
+        child['children'] = children2;
         rootChild['children'].push(child);
       }
       root['children'].push(rootChild);
