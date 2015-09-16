@@ -58,7 +58,7 @@ MP.api.segment('Complete Order', 'Event Category', dateRange).done(function(resu
 
 function segmentOnCategories(categoryList){
   if(categoryList.length == 0){
-    console.log(root);
+    buildChart(root);
     return;
   }
   else{
