@@ -45,7 +45,7 @@ var dateSelect  = $('#dateSelect').MPDatepicker();
 var dateRange = dateSelect.MPDatepicker('value');
 
 MP.api.segment('Complete Order', 'Event Category', dateRange).done(function(results){
-  console.log(results.values());
+  console.log(results.values().length);
 });
 
 MP.api.events('Complete Order',  {}).done(function(results) {
