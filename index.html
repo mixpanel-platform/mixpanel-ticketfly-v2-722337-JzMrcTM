@@ -41,17 +41,18 @@ rect.background {
 /* Mixpanel Query */
 var dateSelect  = $('#dateSelect').MPDatepicker();
 var dateRange = dateSelect.MPDatepicker('value');
+var orderEventName = 'Complete Order';
+var orderCategoryName = 'Event Category';
 console.log(dateRange.to);
 var root = {"name":"flare", "children":[]};
 
 // TODO: might want to add some params to show the chart based on revenue nums
-MP.api.segment('Complete Order', 'Event Category', dateRange).done(function(results){
+MP.api.segment(orderEventName, orderCategoryName, dateRange).done(function(results){
   var categoryList = [];
   for(var key in results.values()){
     categoryList.push(key);
   }
   segmentOnCategories(categoryList);
-  
 });
 
 /* Recursive Function that drills into category and subcategory */
