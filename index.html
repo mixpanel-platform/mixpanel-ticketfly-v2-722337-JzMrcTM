@@ -44,18 +44,20 @@ var dateRange = dateSelect.MPDatepicker('value');
 var orderEventName = 'Complete Order';
 var orderCategoryName = 'Event Category';
 var orderProductName = 'Event Name';
+runQuery();
 
-var root = {"name":"flare", "children":[]};
-
-// TODO: might want to add some params to show the chart based on revenue nums
-MP.api.segment(orderEventName, orderCategoryName, dateRange).done(function(results){
-  var categoryList = [];
-  for(var key in results.values()){
-    categoryList.push(key);
-  }
-  segmentOnCategories(categoryList);
-});
-
+function runQuery(){
+  var root = {"name":"flare", "children":[]};
+  
+  // TODO: might want to add some params to show the chart based on revenue nums
+  MP.api.segment(orderEventName, orderCategoryName, dateRange).done(function(results){
+    var categoryList = [];
+    for(var key in results.values()){
+      categoryList.push(key);
+    }
+    segmentOnCategories(categoryList);
+  });
+}
 /* Recursive Function that drills into category and subcategory */
 function segmentOnCategories(categoryList){
   if(categoryList.length == 0){
