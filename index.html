@@ -73,7 +73,7 @@ rect.background {
 /* Mixpanel Query */
 
 
-MP.api.events('Create Account', 'Transaction', 'Cash out', 'Add Payment Method', 'Add Friends', 'Make First Transcation',  {}).done(function(results) {
+MP.api.events('Complete Order',  {}).done(function(results) {
     var root = {"name":"flare", "children":[]};
     var eventList = [];
     for (var key in results.values()) {
