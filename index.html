@@ -43,27 +43,31 @@ rect.background {
 /* Mixpanel Query */
 var dateSelect  = $('#dateSelect').MPDatepicker();
 var dateRange = dateSelect.MPDatepicker('value');
+console.log(dateRange.to);
 var root = {"name":"flare", "children":[]};
 
 // TODO: might want to add some params to show the chart based on revenue nums
 MP.api.segment('Complete Order', 'Event Category', dateRange).done(function(results){
   var categoryList = [];
   for(var key in results.values()){
-    if(results.values().hasOwnProperty(key)){
-      var eventCategory={};
-      var children = [];
-      eventCategory['name'] = key;
-      // TODO: add children here
-      for(var key2 in results.values()[key]){
-        console.log(key2);
-      }
-      eventCategory['children'] = children;
-      categoryList.push(eventCategory);
+    categoryList.push(key);
+  }
+  segmentOnCategories(categoryList);
+});
+
+function segmentOnCategories(categoryList){
+  if(categoryList.length == 0){
+    return;
+  }
+  else{
+    var params = {
+      
+    };
+    MP.api.segment('Complete Order', 'Event Name', params).done(function(results)){
+      
     }
   }
-  root['children'] = categoryList;
-  buildChart(root);
-});
+}
 
 MP.api.events('Complete Order',  {}).done(function(results) {
     var root = {"name":"flare", "children":[]};
