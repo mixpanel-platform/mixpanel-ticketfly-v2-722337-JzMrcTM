@@ -53,6 +53,7 @@ MP.api.segment('Complete Order', 'Event Category', dateRange).done(function(resu
     categoryList.push(key);
   }
   segmentOnCategories(categoryList);
+  console.log(root);
 });
 
 function segmentOnCategories(categoryList){
@@ -60,13 +61,33 @@ function segmentOnCategories(categoryList){
     return;
   }
   else{
+    var category = categoryList.pop();
     var params = {
       to: dateRange.to,
       from: dateRange.from,
       'where':'properties["Event Categories"] == "'+category+'"'
     };
+    var rootChild = {};
+    rootChild['name'] = category;
+    rootChild['children'] = [];
     MP.api.segment('Complete Order', 'Event Name', params).done(function(results){
-      
+      // for each event in a particular category, create an event name and a LIST OF CHILDREN
+      for(key in results.values()){
+        var child = {};
+        var children2 = [];
+        child['name'] = key;
+        // for each date under an event name, create a child, add it to event children
+        for(date in results.values()[key]){
+          var child2 = {};
+          child2['name'] = date;
+          child2['size'] = results.values()[key][date];
+          children2.push(child2);
+        }
+        child['children'].push(children2);
+        rootChild['children'].push(child);
+      }
+      root['children'].push(rootChild);
+      segmentOnCategories(categoryList);    
     });
   }
 }
