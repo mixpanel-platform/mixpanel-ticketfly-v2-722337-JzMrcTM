@@ -51,7 +51,7 @@ runQuery();
 function runQuery(){
   root = {"name":"flare", "children":[]};
   
-  // TODO: might want to add some params to show the chart based on revenue nums
+  // TODO: might want to add some params to show the chart based on revenue nums, re-run on date change
   MP.api.segment(orderEventName, orderCategoryName, dateRange).done(function(results){
     var categoryList = [];
     for(var key in results.values()){
